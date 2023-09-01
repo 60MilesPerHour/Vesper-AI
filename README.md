@@ -21,7 +21,7 @@ The bot utilizes several Python packages:
 Install the dependencies with:
 
 ```bash
-pip install discord.py openai python-dotenv twilio
+pip3 install discord.py openai python-dotenv twilio
 ```
 
 ## Setting up the Bot
@@ -55,7 +55,7 @@ pip install discord.py openai python-dotenv twilio
 Navigate to the directory containing `bot.py` and run:
 
 ```bash
-python Vesper.py
+python3 Vesper.py
 ```
 
 Vesper should now be online and ready to sprinkle some fun in your server!
