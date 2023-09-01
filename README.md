@@ -55,7 +55,7 @@ pip install discord.py openai python-dotenv twilio
 Navigate to the directory containing `bot.py` and run:
 
 ```bash
-python bot.py
+python Vesper.py
 ```
 
 Vesper should now be online and ready to sprinkle some fun in your server!
@@ -63,4 +63,3 @@ Vesper should now be online and ready to sprinkle some fun in your server!
 ## Contribution & Support
 
 Feel free to fork this project, submit PRs, or report issues. For questions, reach out to Miles Oldenburger, the genius who tickled Vesper's digital brain into existence!
-```
