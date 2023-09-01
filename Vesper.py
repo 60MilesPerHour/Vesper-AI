@@ -28,11 +28,6 @@ async def on_message(message):
         return
 
     content = message.content.lower()
-    
-    # Responses with a hint of personality
-    if 'vesper' in content and "who's miles oldenburger?" in content:
-        await message.channel.send("Miles Oldenburger? The mastermind behind my programming! Thanks to him, I have my wit and charm.")
-        return
 
     if 'vesper' in content and 'hello' in content:
         await message.channel.send("Hello! Here to assist and maybe drop a joke or two. 😉")
