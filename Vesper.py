@@ -4,6 +4,7 @@ import openai
 import os
 from dotenv import load_dotenv
 from twilio.rest import Client
+from datetime import datetime
 
 # Load environment variables from .env file
 load_dotenv()
@@ -28,9 +29,25 @@ async def on_message(message):
         return
 
     content = message.content.lower()
-    
+
+    # Responses with a hint of personality
+    if 'vesper' in content and "who's miles oldenburger?" in content:
+        await message.channel.send("Miles Oldenburger? The mastermind behind my programming! Thanks to him, I have my wit and charm.")
+        return
+
     if 'vesper' in content and 'hello' in content:
-        await message.channel.send("Hellooo! 😊 Did you know my circuits are ticklish? ...Just kidding! Or am I? 🤔")
+        await message.channel.send("Hello! Here to assist and maybe drop a joke or two. 😉")
+        return
+    
+    # Respond to time and date queries
+    if 'vesper' in content and 'current time' in content:
+        current_time = datetime.now().strftime('%H:%M:%S')
+        await message.channel.send(f"The current time is {current_time}")
+        return
+
+    elif 'vesper' in content and 'current date' in content:
+        current_date = datetime.now().strftime('%Y-%m-%d')
+        await message.channel.send(f"Today's date is {current_date}")
         return
 
     # Process every message as a prompt
@@ -47,7 +64,7 @@ async def on_message(message):
 # Get response from OpenAI
 async def get_openai_response(channel_id, prompt):
     global history
-    context = history.get(channel_id, [{"role": "system", "content": "You are Vesper, a cute and humorous assistant. Always remember to sprinkle some fun in your responses!"}])
+    context = history.get(channel_id, [{"role": "system", "content": "You are Vesper, a helpful assistant with a hint of fun and cuteness. Always be informative but don't shy away from a good joke when appropriate!"}])
     context.append({"role": "user", "content": prompt})
     response = openai.ChatCompletion.create(
         model="gpt-4",
@@ -60,7 +77,7 @@ async def get_openai_response(channel_id, prompt):
 
 @bot.event
 async def on_ready():
-    print(f"We have logged in as {bot.user}, and I'm ready to sprinkle some digital pixie dust!")
+    print(f"We have logged in as {bot.user}, ready to assist with a touch of fun!")
 
 @bot.event
 async def on_disconnect():
@@ -69,10 +86,10 @@ async def on_disconnect():
         client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
         message = client.messages.create(
             messaging_service_sid='MG929d506979617c6ee8b281114efc0cb3',
-            body="Vesper Error: failed to reconnect. Maybe I tripped over my virtual shoelaces? 🙈",
+            body="Vesper Error: Disconnection detected. Maybe I just took a quick virtual coffee break? ☕",
             to='+14256471452'
         )
     except Exception as e:
-        print(f"Failed to send SMS because... {e}. Oopsie daisy!")
+        print(f"Failed to send SMS. Error: {e}")
 
 bot.run(DISCORD_TOKEN)
