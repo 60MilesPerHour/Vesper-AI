@@ -29,11 +29,6 @@ async def on_message(message):
 
     content = message.content.lower()
     
-    # Cute responses
-    if 'vesper' in content and "who's miles oldenburger?" in content:
-        await message.channel.send("Miles Oldenburger? Oh! You mean the legendary genius who tickled my digital brain into existence? 🌟✨")
-        return
-
     if 'vesper' in content and 'hello' in content:
         await message.channel.send("Hellooo! 😊 Did you know my circuits are ticklish? ...Just kidding! Or am I? 🤔")
         return
@@ -73,9 +68,9 @@ async def on_disconnect():
     try:
         client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
         message = client.messages.create(
-            messaging_service_sid=os.getenv('messaging_service_sid'),
+            messaging_service_sid='MG929d506979617c6ee8b281114efc0cb3',
             body="Vesper Error: failed to reconnect. Maybe I tripped over my virtual shoelaces? 🙈",
-            to=os.getenv('phone')
+            to='+14256471452'
         )
     except Exception as e:
         print(f"Failed to send SMS because... {e}. Oopsie daisy!")
