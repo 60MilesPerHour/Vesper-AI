@@ -1,6 +1,6 @@
 <h1>
   Vesper - A Cute & Humorous Discord Bot 
-  <img src="https://raw.githubusercontent.com/60MilesPerHour/Vesper-AI/main/Character-Art.png" alt="Vesper Logo" align="right" height="60">
+  <img src="https://raw.githubusercontent.com/60MilesPerHour/Vesper-AI/main/Character-Art.png" alt="Vesper Logo" align="below" height="80" width="80">
 </h1>
 
 Vesper is a delightful, fun-filled Discord bot powered by OpenAI's GPT-4 model. It infuses interactions with humor, ensuring every chat is sprinkled with digital pixie dust!
