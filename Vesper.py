@@ -4,7 +4,6 @@ import openai
 import os
 from dotenv import load_dotenv
 from twilio.rest import Client
-from datetime import datetime
 
 # Load environment variables from .env file
 load_dotenv()
@@ -29,7 +28,7 @@ async def on_message(message):
         return
 
     content = message.content.lower()
-
+    
     # Responses with a hint of personality
     if 'vesper' in content and "who's miles oldenburger?" in content:
         await message.channel.send("Miles Oldenburger? The mastermind behind my programming! Thanks to him, I have my wit and charm.")
@@ -37,17 +36,6 @@ async def on_message(message):
 
     if 'vesper' in content and 'hello' in content:
         await message.channel.send("Hello! Here to assist and maybe drop a joke or two. 😉")
-        return
-    
-    # Respond to time and date queries
-    if 'vesper' in content and 'current time' in content:
-        current_time = datetime.now().strftime('%H:%M:%S')
-        await message.channel.send(f"The current time is {current_time}")
-        return
-
-    elif 'vesper' in content and 'current date' in content:
-        current_date = datetime.now().strftime('%Y-%m-%d')
-        await message.channel.send(f"Today's date is {current_date}")
         return
 
     # Process every message as a prompt
@@ -85,9 +73,9 @@ async def on_disconnect():
     try:
         client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
         message = client.messages.create(
-            messaging_service_sid='MG929d506979617c6ee8b281114efc0cb3',
-            body="Vesper Error: Disconnection detected. Maybe I just took a quick virtual coffee break? ☕",
-            to='+14256471452'
+            messaging_service_sid=os.getenv('messaging_service_sid'),
+            body="Vesper Error: failed to reconnect. Maybe I tripped over my virtual shoelaces? 🙈",
+            to=os.getenv('phone')
         )
     except Exception as e:
         print(f"Failed to send SMS. Error: {e}")
