@@ -1,4 +1,3 @@
-```
 # Vesper - A Cute & Humorous Discord Bot
 
 Vesper is a delightful, fun-filled Discord bot powered by OpenAI's GPT-4 model. It infuses interactions with humor, ensuring every chat is sprinkled with digital pixie dust!
@@ -23,6 +22,7 @@ Install the dependencies with:
 
 ```bash
 pip install discord.py openai python-dotenv twilio
+```
 
 ## Setting up the Bot
 
