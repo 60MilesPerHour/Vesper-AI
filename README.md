@@ -23,7 +23,6 @@ Install the dependencies with:
 
 ```bash
 pip install discord.py openai python-dotenv twilio
-```
 
 ## Setting up the Bot
 
