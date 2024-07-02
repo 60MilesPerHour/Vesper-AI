@@ -1,17 +1,14 @@
 import discord
-from discord.ext import commands, tasks
+from discord.ext import commands
 import openai
 import os
 from dotenv import load_dotenv
-from twilio.rest import Client
 
 # Load environment variables from .env file
 load_dotenv()
 openai.api_key = os.getenv('OPENAI_API_KEY')
 DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
 CHANNEL_ID = int(os.getenv('CHANNEL_ID'))  # Convert the string to an integer
-TWILIO_ACCOUNT_SID = os.getenv('TWILIO_ACCOUNT_SID')
-TWILIO_AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN')
 
 # Initiate bot
 intents = discord.Intents.default()
@@ -61,18 +58,5 @@ async def get_openai_response(channel_id, prompt):
 @bot.event
 async def on_ready():
     print(f"We have logged in as {bot.user}, ready to assist with a touch of fun!")
-
-@bot.event
-async def on_disconnect():
-    # Attempt to send an SMS notification when the bot disconnects
-    try:
-        client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
-        message = client.messages.create(
-            messaging_service_sid=os.getenv('messaging_service_sid'),
-            body="Vesper Error: failed to reconnect. Maybe I tripped over my virtual shoelaces? 🙈",
-            to=os.getenv('phone')
-        )
-    except Exception as e:
-        print(f"Failed to send SMS. Error: {e}")
 
 bot.run(DISCORD_TOKEN)
